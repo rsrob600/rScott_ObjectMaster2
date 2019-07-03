@@ -2,49 +2,47 @@ package com.codingdojo.objectmaster;
 
 public class Samurai extends Human {
 	
-	protected static int currentStrength = strength;
-	protected static int currentIntelligence = intelligence;
-	protected static int currentStealth = stealth;
-	protected static int currentHealth = 200;
+	// add a class variable for the number of objects instantiated
+	private static int numberOfSamurais = 0;
 	
-
-	
-    // Death Blow Method
-	public void deathBlow(String target){
-		String attacker = this.getClass().getSimpleName();
+	// Specific constructor to set the wizard class attributes
+	public Samurai() {
+		this.setHealth(200);
 		
-		// Samurai attacking Wizard
-		if(target == "Wizard") {
-			System.out.println(attacker + " death blow to: " + target);
-	        Wizard.currentHealth = 0;
-	        Samurai.currentHealth = Samurai.currentHealth / 2;
-	        //System.out.println("Samurai health level after attack: " + (Samurai.currentHealth));
-	        //System.out.println("Wizard health level after attack: " + (Wizard.currentHealth));
-		}
-		// Samurai attacking Ninja
-		if(target == "Ninja") {
-			System.out.println(attacker + " death blow to: " + target);
-			Ninja.currentHealth = 0;
-			Samurai.currentHealth = Samurai.currentHealth / 2;
-	        //System.out.println("Samurai health level after attack: " + (Samurai.currentHealth));
-	        //System.out.println("Ninja health level after attack: " + (Ninja.currentHealth));
-		}
-
-    }
-	
-	
-	// Meditate Method
-	public void meditate() {
-		System.out.println("Ommmmmm");
-		int meditationChi = Samurai.currentHealth / 2;
-		Samurai.currentHealth = Samurai.currentHealth + meditationChi;
-		//System.out.println("Samurai health level after meditation: " + (Samurai.currentHealth));
+		// increment number of Samurai and assign ID number
+		this.setID(++numberOfSamurais);
+		
 	}
 	
+	// ---------------------How Many Method------------------------>
+	// Method to return the total number of Samurai class objects
+	public int getHowMany() {
+		System.out.println("There are currently " + numberOfSamurais + " Samurais spawned at this time.");
+		return numberOfSamurais;
+	}
 	
-	// How Many Method (not quite sure how to implement this method)
-	public void howMany() {
-		System.out.println();
+	// ---------------------Death Blow Method------------------------>
+    // Decrease target's health to 0 and the Samurai health by half
+	public void deathBlow(Human target){
+		String attacker = this.getClass().getSimpleName();
+		String attacked = target.getClass().getSimpleName();
+		
+		// Decrease target's health to 0
+		target.setHealth(0);
+		System.out.println(attacked + target.getID() + " has been dealt a death blow and is now expired! Health remaining is: " + target.getHealth());
+
+		// Decrease the Samurai health by half
+		this.setHealth(this.getHealth()/2);
+		System.out.println(attacker + this.getID() + ", that death blow has cost you, you need to meditate quickly to recover! Health remaining is: " + this.getHealth());
+    }
+	
+	// ---------------------Meditate Method------------------------>
+    // Increase the Samurai health by an increment of half of the Samurai current health
+	public void meditate() {
+		String meditator = this.getClass().getSimpleName();
+		
+		this.setHealth(this.getHealth() + (this.getHealth()/2));
+		System.out.println("Ommmmmm, " + meditator + this.getID() + " your health has been restored and is now at: " + this.getHealth());
 	}
 	
 }

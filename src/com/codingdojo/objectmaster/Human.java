@@ -2,150 +2,92 @@ package com.codingdojo.objectmaster;
 
 public class Human {
 
-	protected static int strength = 3;
-	protected static int intelligence = 3;
-	protected static int stealth = 3;
-	protected static int health = 100;
 	
+	// default member instance variables or attributes of the human superclass
+	private int strength = 3;
+	private int intelligence = 3;
+	private int stealth = 3;
+	private int health = 100;
 	
+    // ----------------------ID Tracking Attributes----------------------->
 	
-	// Strength Attributes
-    public int strength() {
-    	return strength;
-    }
-    
-    public int displayStrength(int cstrength) {
-    	strength = cstrength;
-    	//System.out.println(strength);
-    	return strength;
-    }
+	// add an instance variable for the object ID
+	private int id;
 	
-    // Intelligence Attributes
-    public int intelligence() {
-    	return intelligence;
-    }
+	// ID Getter Method
+	public int getID() {
+		return id;
+	}
+	
+	// ID Setter Method
+	public void setID(int id) {
+		this.id = id;
+	}
+		
+    // ----------------------ID Tracking Attributes----------------------->
+	
+	// Default Constructor
+	public Human() {
+	}
+		
+    // ----------------------Attack Method----------------------->
     
-    public int displayIntelligence(int cintelligence) {
-    	intelligence = cintelligence;
-    	//System.out.println(intelligence);
-    	return intelligence;
-    }
-    
-    // Stealth Attributes
-    public int stealth() {
-    	return stealth;
-    }
-    
-    public int displayStealth(int cstealth) {
-    	stealth = cstealth;
-    	//System.out.println(stealth);
-    	return stealth;
-    }
-    
-    // Health Attributes
-    public int health() {
-    	return health;
-    }
-    
-    public int displayHealth(int chealth) {
-    	health = chealth;
-    	//System.out.println(health);
-    	return health;
-    }
-    
-    // Attack Method
-	public void attack(String target){
+    // Method which takes in the "attacking object instance" and the "target object instance" and decrements the target health by the attacking object instance strength
+	public Human attack(Human target) {
+		target.health -= this.strength;
+		
 		String attacker = this.getClass().getSimpleName();
+		String attacked = target.getClass().getSimpleName();
+		System.out.println(attacker + this.getID() + " has attacked " + attacked + target.getID() +  ", health remaining is: " + target.getHealth());
+		return null;
+    }
 		
-		/* -----------------------Human----------------------- */
-		
-		/*
-		// Human attacking Human
-		if(target == "Human" && attacker.equals("Human")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Human.health = Human.health - Human.strength;
-	        System.out.println("Human health level after attack: " + (Human.health));
-		}
-		
-		// Human attacking Wizard
-		if(target == "Wizard" && attacker.equals("Human")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Wizard.currentHealth = Wizard.currentHealth - Human.strength;
-	        //System.out.println("Wizard health level after attack: " + (Wizard.currentHealth));
-		}
-		// Human attacking Ninja
-		if(target == "Ninja" && attacker.equals("Human")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Ninja.currentHealth = Ninja.currentHealth - Human.strength;
-	        //System.out.println("Ninja health level after attack: " + (Ninja.currentHealth));
-		}
-		// Human attacking Samurai
-		if(target == "Samurai" && attacker.equals("Human")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Samurai.currentHealth = Samurai.currentHealth - Human.strength;
-	        //System.out.println("Samurai health level after attack: " + (Samurai.currentHealth));
-		}
-		*/
-		
-		/* -----------------------Wizard----------------------- */
-		// Wizard attacking Wizard
-		if(target == "Wizard" && attacker.equals("Wizard")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Wizard.currentHealth = Wizard.currentHealth - Wizard.currentStrength;
-	        //System.out.println("Wizard health level after attack: " + (Wizard.currentHealth));
-		}
-		// Wizard attacking Ninja
-		if(target == "Ninja" && attacker.equals("Wizard")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Ninja.currentHealth = Ninja.currentHealth - Wizard.currentStrength;
-	        //System.out.println("Ninja health level after attack: " + (Ninja.currentHealth));
-		}
-		// Wizard attacking Samurai
-		if(target == "Samurai" && attacker.equals("Wizard")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Samurai.currentHealth = Samurai.currentHealth - Wizard.currentStrength;
-	        //System.out.println("Samurai health level after attack: " + (Samurai.currentHealth));
-		}
-		/* -----------------------Ninja----------------------- */
-		// Ninja attacking Wizard
-		if(target == "Wizard" && attacker.equals("Ninja")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Wizard.currentHealth = Wizard.currentHealth - Ninja.currentStrength;
-	        //System.out.println("Wizard health level after attack: " + (Wizard.currentHealth));
-		}
-		// Ninja attacking Ninja
-		if(target == "Ninja" && attacker.equals("Ninja")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Ninja.currentHealth = Ninja.currentHealth - Ninja.currentStrength;
-	        //System.out.println("Ninja health level after attack: " + (Ninja.currentHealth));
-		}
-		// Ninja attacking Samurai
-		if(target == "Samurai" && attacker.equals("Ninja")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Samurai.currentHealth = Samurai.currentHealth - Ninja.currentStrength;
-	        //System.out.println("Samurai health level after attack: " + (Samurai.currentHealth));
-		}
-		/* -----------------------Samurai----------------------- */
-		// Samurai attacking Wizard
-		if(target == "Wizard" && attacker.equals("Samurai")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Wizard.currentHealth = Wizard.currentHealth - Samurai.currentStrength;
-	        //System.out.println("Wizard health level after attack: " + (Wizard.currentHealth));
-		}
-		// Samurai attacking Ninja
-		if(target == "Ninja" && attacker.equals("Samurai")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Ninja.currentHealth = Ninja.currentHealth - Samurai.currentStrength;
-	        //System.out.println("Ninja health level after attack: " + (Ninja.currentHealth));
-		}
-		// Samurai attacking Samurai
-		if(target == "Samurai" && attacker.equals("Samurai")) {
-			System.out.println(attacker + " attacking: " + target);
-	        Samurai.currentHealth = Samurai.currentHealth - Samurai.currentStrength;
-	        //System.out.println("Samurai health level after attack: " + (Samurai.currentHealth));
-		}
-		
-
+	// ---------------------Strength Attributes------------------------>
+	
+	// Strength Getter Method (used to retrieve the private attributes from the human superclass for the instance object calling it)
+    public int getStrength() {
+    	return strength;
+    }
+    
+    // Strength Setter Method (used to set the attributes of the instance object)
+    public void setStrength(int health) {
+    	this.health = health;
+    }    
+	
+    // ---------------------Intelligence Attributes------------------------>
+    
+    // Intelligence Getter Method
+    public int getIntelligence() {
+    	return intelligence;
+    }
+    
+    // Intelligence Setter Method
+    public void setIntelligence(int intelligence) {
+    	this.intelligence = intelligence;
+    }
+    
+    // ---------------------Stealth Attributes------------------------>
+    
+    // Stealth Getter Method
+    public int getStealth() {
+    	return stealth;
+    }
+    
+    // Stealth Setter Method
+    public void setStealth(int stealth) {
+    	this.stealth = stealth;
+    }
+    
+    // ----------------------Health Attributes------------------------>
+    
+    // Health Getter Method
+    public int getHealth() {
+    	return health;
+    }
+    
+    // Health Setter Method
+    public void setHealth(int health) {
+    	this.health = health;
     }
 	
 	
